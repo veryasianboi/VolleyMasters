@@ -1,5 +1,6 @@
 #include <Math.h>
-
+#include <stdlib.h>
+#include <stdio.h>
 /*
   example1-basic
 
@@ -33,13 +34,13 @@ sfe_lsm_data_t accelData;
 sfe_lsm_data_t gyroData;
 int magnitude;
 int flag;
-int arraySize = 10;
-int dataDump[10];
+int arraySize = 7;
+double dataDump[7];
 int count = 0;
 int thresh = 1100;
 int startTime;
 int endTime;
-int speed;
+double speed;
 
 void setup()
 {
@@ -50,8 +51,6 @@ void setup()
     while (!Serial)
     {
     }
-
-    Serial.println("LSM6DSV16X Example 1 - Basic Readings I2C");
 
     if (!myLSM.begin())
     {
@@ -123,7 +122,7 @@ void loop()
         } else if (count >= arraySize) {
           //Serial.print("trigger3");
           endTime = millis();
-          int dx = (endTime-startTime)/arraySize;
+        double dx = (endTime-startTime)/arraySize;
           count = 0;
           flag = 0;
           for (int i = 0; i < arraySize; i++) {

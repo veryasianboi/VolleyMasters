@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 // Rotary Encoder Inputs
 #define CLK 3
 #define DT 4
@@ -51,9 +54,10 @@ void loop() {
   Serial.print("Direction: ");
   if (abs(counter-old_counter == 0))
     currentDir = "Idle";
+  int randNum = rand()%4;
   Serial.print(currentDir);
   Serial.print(" | RPM: ");
-  Serial.println(abs(counter-old_counter)*4);
+  Serial.println(abs(counter-old_counter)*4+randNum);
   old_counter = counter;
   } // if
 
