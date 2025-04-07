@@ -60,7 +60,7 @@ void loop() {
     rpm++;
     speed++;
 
-    String data = String(rpm%100) + String(speed%100);
+    String data = String(rpm%100) + "," + String(speed%100);
     
     pCharacteristic->setValue(data.c_str());
     pCharacteristic->notify();
