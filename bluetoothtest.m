@@ -6,12 +6,15 @@ theString = characteristic(bruh, "4FAFC201-1FB5-459E-8FCC-C5C9C331914B", "BEB548
 
 while true
     data = char(read(theString,'latest'));
-    data = str2double(data);
-    rpm = floor(data/100);
-    speed = mod(data,100);
+    %disp(data);
+    splt = strsplit(data,','); 
+    %disp(splt);
+    rpm = str2double(splt(1));
+    speed = str2double(splt(2));
     disp('RPM: ');
     disp(rpm);
     disp('Speed: ');
     disp(speed);
     pause(2);
+    
 end
