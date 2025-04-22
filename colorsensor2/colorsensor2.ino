@@ -4,7 +4,7 @@
 int black, white;
 int hit;
 int threshR, threshG, threshB;
-double ti, tf;
+double tiColor, tfColor;
 double speed;
 int radius;
 const double pi = 3.14159;
@@ -18,10 +18,10 @@ void setup(void) {
   black = 1;
   white = 0;
   hit = 0;
-  threshR = (200+1200)/2;
+  threshR = (200+1200)/2; // gotta calibrate these first
   threshG = (200+800)/2;
   threshB = (100+500)/2;
-  radius = 1; // inch
+  radius = 1; // 6.5mm inner, 
   counting = 0;
 
   if (tcs.begin()) {
@@ -50,16 +50,17 @@ void loop(void) {
   if (white && !counting) {
     counting = 1;
     Serial.println("Counting...");
-    ti = millis();
+    tiColor = millis();
   } else if (black && counting) {
     counting = 0;
-    tf = millis();
-    speed = 1/(tf-ti)*12*1000;
+    tfColor = millis();
+    speed = 1/(tfColor-tiColor)*12*1000;
     Serial.print("Speed: ");
     Serial.println(speed);
     Serial.println("*************");
   } // if
 
+// calibration
 /*
 Serial.print(r);
 Serial.print(" ");
@@ -67,6 +68,7 @@ Serial.print(g);
 Serial.print(" ");
 Serial.println(b);
 */
+
 
 /*
   Serial.println("**********************");
